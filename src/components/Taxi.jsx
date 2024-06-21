@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const Taxi = (props) => {
   const gltf = useLoader(GLTFLoader, process.env.PUBLIC_URL + '/assets/models/taxi/scene.gltf');
   const ref = useRef();
-  const [position, setPosition] = useState([0, -2.5, 0]); // Начальная позиция ниже
+  const [position, setPosition] = useState([0, -2, 0]); // Позиционируем машину ниже
   const [scale, setScale] = useState([5, 5, 5]); // Увеличиваем масштаб модели
 
   useEffect(() => {
