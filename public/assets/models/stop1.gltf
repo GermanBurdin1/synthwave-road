@@ -1,7 +1,6 @@
 {
   "asset": {
-    "version": "2.0",
-    "generator": "Sample Generator"
+    "version": "2.0"
   },
   "scenes": [
     {
@@ -27,16 +26,22 @@
   ],
   "buffers": [
     {
-      "uri": "data:application/octet-stream;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-      "byteLength": 44
+      "uri": "data:application/octet-stream;base64,AAAAAA==",
+      "byteLength": 6
     }
   ],
   "bufferViews": [
     {
       "buffer": 0,
       "byteOffset": 0,
-      "byteLength": 44,
+      "byteLength": 24,
       "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 24,
+      "byteLength": 6,
+      "target": 34963
     }
   ],
   "accessors": [
@@ -50,8 +55,8 @@
       "min": [-1.0, -1.0, -1.0]
     },
     {
-      "bufferView": 0,
-      "byteOffset": 36,
+      "bufferView": 1,
+      "byteOffset": 0,
       "componentType": 5123,
       "count": 3,
       "type": "SCALAR"
