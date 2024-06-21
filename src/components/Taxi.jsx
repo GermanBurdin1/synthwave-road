@@ -5,24 +5,37 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const Taxi = (props) => {
   const gltf = useLoader(GLTFLoader, process.env.PUBLIC_URL + '/assets/models/taxi/scene.gltf');
   const ref = useRef();
-  const [position, setPosition] = useState([0, -8, 0]); // Начальная позиция
-  const [scale, setScale] = useState([5, 5, 5]); // Масштаб модели
+  const [position, setPosition] = useState([0, -2.5, 0]); // Начальная позиция ниже
+  const [scale, setScale] = useState([5, 5, 5]); // Увеличиваем масштаб модели
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       setPosition((prevPosition) => {
+        let newX = prevPosition[0];
+        let newZ = prevPosition[2];
+        
         switch (event.key) {
           case 'ArrowUp':
-            return [prevPosition[0], prevPosition[1], prevPosition[2] - 0.1];
+            newZ -= 0.1;
+            break;
           case 'ArrowDown':
-            return [prevPosition[0], prevPosition[1], prevPosition[2] + 0.1];
+            newZ += 0.1;
+            break;
           case 'ArrowLeft':
-            return [prevPosition[0] - 0.1, prevPosition[1], prevPosition[2]];
+            newX -= 0.1;
+            break;
           case 'ArrowRight':
-            return [prevPosition[0] + 0.1, prevPosition[1], prevPosition[2]];
+            newX += 0.1;
+            break;
           default:
-            return prevPosition;
+            break;
         }
+
+        // Ограничиваем движение машины в пределах дорожной полосы
+        if (newX < -1.5) newX = -1.5;
+        if (newX > 1.5) newX = 1.5;
+
+        return [newX, prevPosition[1], newZ];
       });
     };
 
