@@ -1,0 +1,26 @@
+.radio-player {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #111;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.radio-player button {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.radio-player button:hover {
+  background-color: #fff;
+  color: #111;
+}
