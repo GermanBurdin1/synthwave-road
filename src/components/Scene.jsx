@@ -41,50 +41,23 @@
 
 // export default Scene;
 
-// Scene.jsx
-import React, { useRef, useEffect, useState } from 'react';
-import { useLoader } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
-const Taxi = (props) => {
-  const gltf = useLoader(GLTFLoader, process.env.PUBLIC_URL + '/assets/models/taxi/scene.gltf');
-  const ref = useRef();
-
-  return <primitive ref={ref} object={gltf.scene} {...props} />;
-};
+import React from 'react';
+import Taxi from './Taxi';
+import { useThree } from '@react-three/fiber';
 
 const Scene = () => {
-  const [position, setPosition] = useState([0, 0, 0]);
+  const { camera } = useThree();
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      setPosition((prevPosition) => {
-        switch (event.key) {
-          case 'ArrowUp':
-            return [prevPosition[0], prevPosition[1], prevPosition[2] - 0.1];
-          case 'ArrowDown':
-            return [prevPosition[0], prevPosition[1], prevPosition[2] + 0.1];
-          case 'ArrowLeft':
-            return [prevPosition[0] - 0.1, prevPosition[1], prevPosition[2]];
-          case 'ArrowRight':
-            return [prevPosition[0] + 0.1, prevPosition[1], prevPosition[2]];
-          default:
-            return prevPosition;
-        }
-      });
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
+  // Устанавливаем начальное положение камеры
+  React.useEffect(() => {
+    camera.position.set(0, 2, 5); // Позиция камеры позади такси и немного выше
+    camera.lookAt(0, -1.5, 0); // Камера направлена на такси
+  }, [camera]);
 
   return (
-    <>
-      <Taxi position={position} scale={[1, 1, 1]} rotation={[0, 0, 0]} />
-    </>
+    <group>
+      <Taxi />
+    </group>
   );
 };
 
