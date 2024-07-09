@@ -36,7 +36,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" id="root">
       <Canvas>
         <ambientLight intensity={0.5} />
         <pointLight position={[0, 0, 0]} />
